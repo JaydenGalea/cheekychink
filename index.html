@@ -1,0 +1,1174 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<title>Chat Time</title>
+	<meta http-equiv="refresh" content="1800">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+
+	</script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu"
+    crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js">
+	</script>
+
+  <link rel="icon" href="https://i.imgur.com/9TC5QhF.png"/>
+	<!-- <link rel="shortcut icon" href="https://www.seekpng.com/png/small/367-3677804_start-live-chat-youtube-logo-vector-circle.png"/> -->
+
+	<style>
+		* {
+			box-sizing: border-box;
+		}
+
+		html {
+			text-shadow: 2px 2px white;
+			font-weight: 300;
+			-webkit-font-smoothing: antialiased;
+		}
+
+		html,
+		input {
+			text-shadow: 2px 2px white;
+			font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+		}
+
+		@keyframes color-change {
+			0% {
+				background-color: teal;
+			}
+			20% {
+				background-color: gold;
+			}
+			40% {
+				background-color: indianred;
+			}
+			60% {
+				background-color: violet;
+			}
+			80% {
+				background-color: green;
+			}
+			100% {
+				background-color: teal;
+			}
+		}
+
+		html,
+		body {
+			height: 100%;
+			margin: 0;
+			padding: 0;
+			-webkit-animation: bgcolor 20s infinite;
+			animation: bgcolor 10s infinite;
+			-webkit-animation-direction: alternate;
+			animation-direction: alternate;
+			animation: 10000ms ease-in-out infinite color-change;
+
+			transition-duration: 0.4s;
+		}
+
+		/* Hide scrollbar for Chrome, Safari and Opera */
+		.example::-webkit-scrollbar {
+			display: none;
+		}
+
+		/* Hide scrollbar for IE, Edge and Firefox */
+		.example {
+			-ms-overflow-style: none;
+			/* IE and Edge */
+			scrollbar-width: none;
+			/* Firefox */
+		}
+
+		ul {
+			list-style: none;
+			word-wrap: break-word;
+		}
+
+		/* Pages */
+
+		.pages {
+			height: 100%;
+			margin: 0;
+			padding: 0;
+			width: 100%;
+		}
+
+		.page {
+			height: 100%;
+			position: absolute;
+			width: 100%;
+		}
+
+		/* About Page */
+		.about {
+			text-shadow: 2px 2px black;
+			color: whitesmoke;
+			display: none;
+			position: fixed;
+			/* Stay in place */
+			z-index: 1;
+			/* Sit on top */
+			left: 0;
+			top: 0;
+			width: 100%;
+			/* Full width */
+			height: 100%;
+			/* Full height */
+			// overflow: auto;
+			/* Enable scroll if needed */
+			background-color: rgb(0, 0, 0);
+			/* Fallback color */
+			background-color: rgba(0, 0, 0, 0.4);
+			/* Black w/ opacity */
+			-webkit-animation-name: fadeIn;
+			/* Fade in the background */
+			-webkit-animation-duration: 0.4s;
+			animation-name: fadeIn;
+			animation-duration: 0.4s
+		}
+
+		/* Modal Content */
+		.about-content {
+			position: fixed;
+			bottom: 0;
+			background-color: #fefefe;
+			width: 100%;
+			-webkit-animation-name: slideIn;
+			-webkit-animation-duration: 0.4s;
+			animation-name: slideIn;
+			animation-duration: 0.4s
+		}
+
+		/* The Close Button */
+		.close {
+			color: white;
+			float: right;
+			font-size: 28px;
+			font-weight: bold;
+		}
+
+		.close:hover,
+		.close:focus {
+			color: #000;
+			text-decoration: none;
+			cursor: pointer;
+		}
+
+		.about-header {
+			padding: 2px 16px;
+			background-color: indianred;
+			color: white;
+		}
+
+		.about-body {
+			padding: 8px 16px;
+			background-color: indianred;
+		}
+
+		.about-footer {
+			padding: 2px 16px;
+			background-color: indianred;
+			color: white;
+		}
+
+		/* Add Animation */
+		@-webkit-keyframes slideIn {
+			from {
+				bottom: -300px;
+				opacity: 0
+			}
+
+			to {
+				bottom: 0;
+				opacity: 1
+			}
+		}
+
+		@keyframes slideIn {
+			from {
+				bottom: -300px;
+				opacity: 0
+			}
+
+			to {
+				bottom: 0;
+				opacity: 1
+			}
+		}
+
+		@-webkit-keyframes fadeIn {
+			from {
+				opacity: 0
+			}
+
+			to {
+				opacity: 1
+			}
+		}
+
+		@keyframes fadeIn {
+			from {
+				opacity: 0
+			}
+
+			to {
+				opacity: 1
+			}
+		}
+
+		/* Login Page */
+
+		.login.page {
+			background-color: #4158D0;
+			background-image: linear-gradient(43deg, #4158D0 0%, #C850C0 46%, #FFCC70 100%);
+
+		}
+
+		.login.page .form {
+			height: 100px;
+			margin-top: -100px;
+			position: absolute;
+			text-align: center;
+			top: 50%;
+			width: 100%;
+		}
+
+		.login.page .form .usernameInput {
+			background-color: transparent;
+			border: none;
+			border-bottom: 2px solid #fff;
+			outline: none;
+			padding-bottom: 15px;
+			text-align: center;
+			width: 420px;
+		}
+
+		.login.page .title {
+			text-shadow: 2px 2px black;
+			font-size: 200%;
+			text-align: center;
+		}
+
+		.login.page .usernameInput {
+			text-shadow: 2px 2px black;
+			font-size: 200%;
+			letter-spacing: 3px;
+		}
+
+		.login.page .title,
+		.login.page .usernameInput {
+			text-shadow: 2px 2px black;
+			color: #fff;
+			font-weight: 100;
+		}
+
+    /* a {
+      text-decoration: none;
+      color: white;
+    } */
+
+    a:hover {
+      text-decoration: none;
+      color: grey;
+    }
+
+		.footer {
+			position: fixed;
+			left: 0;
+			bottom: 0;
+			width: 100%;
+			background-color: #8EC5FC;
+			background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+			text-shadow: 2px 2px black;
+			color: #fff;
+			font-size: 20px;
+			text-align: center;
+		}
+
+    .footerp {
+      margin: 0 0 0px;
+      padding: 10px;
+    }
+
+		/* Chat page */
+
+		.chat.page {
+			display: none;
+			overflow-y: hidden
+		}
+
+		.darkmodebutton:hover {
+			background-color: black;
+			color: white;
+		}
+
+		.infobutton:hover {
+			background-color: black;
+			color: white;
+		}
+
+    .settingsbutton {
+			width: 80%;
+		}
+
+		/* .settingsbutton:hover {
+			background-color: black;
+			color: white;
+		} */
+
+		.updatesbutton:hover {
+			background-color: black;
+			color: white;
+		}
+
+		.createbutton:hover {
+			background-color: black;
+			color: white;
+		}
+
+		.joinbutton:hover {
+			background-color: black;
+			color: white;
+		}
+
+		.btn-group {
+      padding: 5px;
+			overflow-y: hidden;
+
+			display: flex;
+			justify-content: center;
+		}
+
+		.btn-group button {
+			// background-color: #04AA6D;
+			/* background-color: white; */
+			color: white;
+      background: transparent;
+      text-shadow: 1px 1px black;
+			border: 1px solid #fff;
+      border-radius: 1px;
+			padding: 10px 24px;
+			cursor: pointer;
+			float: left;
+			overflow-y: hidden;
+
+			transition-duration: 0.4s;
+		}
+
+		.btn-group button:not(:last-child) {
+			border-right: none;
+			overflow-y: hidden
+			/* Prevent double borders */
+		}
+
+		/* Clear floats (clearfix hack) */
+		.btn-group:after {
+			content: "";
+			clear: both;
+			display: table;
+			overflow-y: hidden
+		}
+
+		/* Font */
+
+		.messages {
+			text-shadow: 2px 2px black;
+			color: white;
+			font-size: 150%;
+		}
+
+		.inputMessage {
+			text-shadow: 2px 2px white;
+			font-size: 100%;
+		}
+
+		.log {
+			text-shadow: 2px 2px black;
+			color: whitesmoke;
+			font-size: 100%;
+			margin: 5px;
+			text-align: center;
+		}
+
+    .subtitle {
+			text-shadow: 2px 2px black;
+      font-style: italic;
+			color: whitesmoke;
+			font-size: 100%;
+			margin: 5px;
+			text-align: center;
+		}
+
+		.annouce {
+			text-shadow: 2px 2px black;
+			color: indianred;
+			text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+			font-size: 150%;
+			margin: 5px;
+			text-align: center;
+		}
+
+		/* Messages */
+
+		.chatArea {
+			height: 95%;
+			padding-bottom: 80px;
+
+			overflow-y: hidden;
+		}
+
+		.messages {
+			height: 100%;
+			margin: 0;
+			overflow-y: scroll;
+			padding: 10px 20px 10px 20px;
+		}
+
+		.message.typing .messageBody {
+			text-shadow: 2px 2px white;
+			color: gray;
+		}
+
+		.username {
+			text-shadow: 1px 1px white;
+			font-weight: 700;
+			overflow: hidden;
+			padding-right: 15px;
+			text-align: right;
+		}
+
+		/* Input */
+
+		.inputMessage {
+			bottom: 0;
+			height: 60px;
+			left: 0;
+			outline: none;
+			padding-left: 10px;
+			position: absolute;
+			right: 0;
+			width: 100%;
+			background: #FFFFFF;
+
+			box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.5);
+		}
+	</style>
+</head>
+
+<body>
+	<ul class="pages">
+		<li class="chat page">
+
+			<!-- Settings & Dark Mode -->
+			<div class="btn-group">
+				<!-- <button id="infoButton" class="button infobutton" data-toggle="modal" data-target="#infoModal">Info <i class="fa fa-info-circle"></i></button>
+				<button id="updatesButton" class="button updatesbutton" data-toggle="modal" data-target="#updatesModal">Updates <i class="fa fa-map-signs"></i></button> -->
+				<button id="settingsButton" class="button settingsbutton" data-toggle="modal" data-target="#settingsModal">Settings <i class="fa fa-cog"></i></button>
+        <!-- <button id="createButton" class="button createbutton" data-toggle="modal" data-target="#createModal">Create Room <i class="fa fa-pencil"></i></button>
+        <button id="joinButton" class="button joinbutton" data-toggle="modal" data-target="#joinModal">Join Room <i class="fa fa-plus-circle"></i></button> -->
+      </div>
+
+      <!-- Chat -->
+			<div id="chatArea" class="chatArea">
+				<ul class="messages"></ul>
+			</div>
+
+			<!-- Input Message -->
+      <input class="inputMessage" placeholder="Type here..." maxlength="5000"/>
+      
+      <!-- Modals -->
+
+  <!-- Info -->
+  <!-- <div class="modal fade" id="infoModal" role="dialog">
+    <div class="modal-dialog"> -->
+    
+      <!-- Modal content-->
+      <!-- <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h1 class="modal-title">Info <i class="fa fa-info-circle"></i></h1>
+        </div>
+        <div class="modal-body">
+          <h2 style="font-size: 29px;"><i><strong>Socials</strong></i>  <i class="fas fa-icons"></i></h2>
+          <a href="https://instagram.com/jay.den.dev">Instagram <i class="far fa-comment-alt"></i></a>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal"><i class="	fa fa-window-close-o"></i></button>
+        </div>
+      </div>
+    </div>
+  </div> -->
+
+ <!-- Help -->
+  <!-- <div class="modal fade" id="updatesModal" role="dialog">
+    <div class="modal-dialog"> -->
+    
+      <!-- Modal content-->
+      <!-- <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h1 class="modal-title">Updates <i class="	fa fa-map-signs"></i></h1>
+        </div>
+        <div class="modal-body">
+          <h2 style="font-size: 29px;"><i><strong>ALPHA 0.0.2 Features & Patch Notes:</strong></i> <i class="fa fa-map-o"></i></h2>
+          <br>
+          <h3 style="font-size: 20px;"><strong>Features</strong> <i class="fa fa-code"></i></h3>
+          <h4>•  Added MOBILE SUPPORT! You can now chat on the go, check it out by going on Chat Time on your device's browser!</h4>
+          <h4>•  Added buttons 'Updates, Settings, Dark/Default Mode, Create Room, Join Room'.</h4>
+          <h4>•  Updated message input bar.</h4>
+          <h4>•  Updated 'log' annoucements when a user join/leaves.</h4>
+          <br>
+          <h3 style="font-size: 20px;"><strong>Bug Fixes</strong> <i class="fa fa-bug"></i></h3>
+          <h4>•  Fixed Issues with chat being blocked by message input.</h4>
+          <h4>•  Fixed issues with latency and messages not sending.</h4>
+          <br>
+          <h4 style="font-size: 15px;"><b>Posted on</b> <i>8/05/21 - 12:47pm</i></h4>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal"><i class="	fa fa-window-close-o"></i></button>
+        </div>
+      </div>
+    </div>
+  </div> -->
+
+ <!-- Settings -->
+  <div class="modal fade" id="settingsModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h1 class="modal-title">Settings <i class="fa fa-cog"></i></h1>
+        </div>
+        <div class="modal-body">
+          <center>
+            <br>
+            <h2>Change Theme</h2>
+            <button id="darkButton", class="button darkmodebutton", onclick="darkMode()">Dark Mode <i class="fa fa-adjust"></i></button>
+            <br>
+            <br>
+          </center>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal"><i class="	fa fa-window-close-o"></i></button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Create Room
+  <div class="modal fade" id="createModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <!-- <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h1 class="modal-title">Create Room <i class="fa fa-pencil"></i></h1>
+        </div>
+        <div class="modal-body">
+          <p>Creating rooms is currently diasabled.</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal"><i class="	fa fa-window-close-o"></i></button>
+        </div>
+      </div>
+    </div>
+  </div> -->
+
+  <!-- Join Room -->
+  <!-- <div class="modal fade" id="joinModal" role="dialog">
+    <div class="modal-dialog"> -->
+    
+      <!-- Modal content-->
+      <!-- <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h1 class="modal-title">Join Room <i class="fa fa-plus-circle"></i></h1>
+        </div>
+        <div class="modal-body">
+          <p>Joining rooms is currently diasabled.</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal"><i class="	fa fa-window-close-o"></i></button>
+        </div>
+      </div>
+    </div>
+  </div> -->
+    </li>
+
+    <li class="login page">
+      <div class="form">
+        <!-- User Setup -->
+          <h3 class="title" data-splitting>Enter Your Username!</h3>
+          <input class="usernameInput" type="text" maxlength="20"/>
+          
+          <!-- Panels -->
+          
+
+          <!-- Footer -->
+          <div class="footer">
+            <a href="https://jaydengalea.ddns.net" target="blank_" style="text-decoration: none; color: white;"><p class="footerp"><i class="fa fa-compass"></i> Jayden Galea | 2022</p>
+            <div id="mobileTip"></div>
+          </div>
+
+      </div>
+    </li>
+
+  </ul>
+
+    <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        // Dark Mode
+        var isDarkMode = false;
+        var isMobile = false;
+
+        function darkMode() {
+          const body = document.getElementsByTagName("BODY")[0]
+          const messages = document.getElementsByTagName("messages")
+          const darkButton = document.getElementById("darkButton");
+
+          if (!isMobile)
+          {
+            if (!isDarkMode)
+            {
+              body.style.animation = "none";
+              body.style.background = "#1a1a1a";
+              darkButton.innerHTML = 'Default Mode ' + '<i class="fa fa-adjust" aria-hidden="true"></i>';
+              isDarkMode = true;
+            } else {
+              body.style.animation = "10000ms ease-in-out infinite color-change";
+              darkButton.innerHTML = 'Dark Mode ' + '<i class="fa fa-adjust" aria-hidden="true"></i>';
+              isDarkMode = false;
+            }
+          } else
+          {
+            const darkButton = document.getElementById("darkButton");
+            const chatArea = document.getElementById("chatArea");
+
+            if (!isDarkMode)
+            {
+              body.style.animation = "none";
+              body.style.background = "#1a1a1a";
+              isDarkMode = true;
+            } else {
+              body.style.animation = "10000ms ease-in-out infinite color-change";
+              isDarkMode = false;
+            }
+          }
+        }
+
+        // Mobile
+        if (typeof window.orientation !== 'undefined')
+        {
+          const updatesButton = document.getElementById("updatesButton");
+          const settingsButton = document.getElementById("settingsButton");
+          const createButton = document.getElementById("createButton");
+          const joinButton = document.getElementById("joinButton");
+          const chatArea = document.getElementById("chatArea");
+          const mobileTip = document.getElementById("mobileTip");
+          
+          updatesButton.innerHTML = '<i class="	fa fa-map-signs" aria-hidden="true"></i>';
+          settingsButton.innerHTML = '<i class="fa fa-cog" aria-hidden="true"></i>';
+          createButton.innerHTML = '<i class="fa fa-pencil" aria-hidden="true"></i>';
+          joinButton.innerHTML = '<i class="fa fa-plus-circle" aria-hidden="true"></i>';
+          mobileTip.innerHTML = "[ Best recommended on PC ]";
+
+          chatArea.style.height = "83%";
+          isMobile = true;
+        }
+        
+        //Chat
+        $(function () {
+          if (localStorage.banned) {
+          if (localStorage.banned == 1)
+          {
+            console.log('banned.');
+            banned = true;
+            return;
+          }
+        } else {
+          localStorage.amount = 0;
+        }
+
+            var FADE_TIME = 500; // ms
+            var COLORS = [
+                '#e21400', '#f8a700', '#58dc00',
+                '#287b00', '#a8f07a', '#4ae8c4', '#3b88eb',
+                '#6b54eb', '#f0ed51', '#f0545c' //Cherry
+            ];
+
+            // Initialize variables
+            var $window = $(window);
+            var $usernameInput = $('.usernameInput'); // Input for username
+            var $messages = $('.messages'); // Messages area
+            var $inputMessage = $('.inputMessage'); // Input message input box
+
+            var $loginPage = $('.login.page'); // Login
+            var $chatPage = $('.chat.page'); // Chatroom
+
+            // Prompt for setting a username
+            var username;
+            var banned = false;
+            var connected = false;
+            var lastTypingTime;
+            var $currentInput = $usernameInput.focus();
+
+            var socket = io();
+
+            const addParticipantsMessage = (data) => {
+                var sep = '';
+                var comm = '';
+                var message = '';
+                var link = '';
+                if (data.numUsers === 1) {
+                    sep += "-----------------------------------------------";
+                    comm += "[ Try some commands: /help ]";
+                    message += "There is no one else in the room currently.";
+                } else {
+                    sep += "-----------------------------------------------"
+                    comm += "[ Try some commands: /help ]";
+                    message += "There is currently " + data.numUsers + " Chatters!";
+                }
+                annouce(sep);
+                log(comm);
+                log(message);
+            }
+
+            // Sets the client's username
+            const setUsername = () => {
+                username = cleanInput($usernameInput.val().trim());
+
+                // If the username is valid
+                if (username && !banned) {
+                    $loginPage.fadeOut();
+                    $chatPage.show();
+                    $loginPage.off('click');
+                    $currentInput = $inputMessage.focus();
+                    
+                    // Tell the server your username
+                    socket.emit('add user', username);
+                }
+            }
+
+            function ContainsAny(str, items){
+                for(var i in items){
+                    var item = items[i];
+                    if (str.indexOf(item) > -1){
+                        return true;
+                    }
+
+                }
+                return false;
+            }
+
+            $("#inputButton").click(function(){
+              sendMessage();
+            });
+
+            // Sends a chat message
+            var command = false;
+            const sendMessage = () => {
+                var message = $inputMessage.val();
+                // Prevent markup from being injected into the message
+                message = cleanInput(message);
+
+                // Blocked emojis/symbols
+                // if(ContainsAny(message, ["卍", "卐", "☭", "╰⋃╯", "╭ᑎ╮", "🖕", "(‿ˠ‿)", "jayden", "Jayden"])){
+                //   return;
+                // }
+
+                if (message == " ")
+                {
+                  return;
+                }
+
+                if (message == "/help") {
+                  setTimeout(() => { 
+                    server("[ /help ] - Displays list of all commands.") 
+                    // server("[ /color ] - Changes the color of your username. (HEX Input)")
+                    server("[ /ip ] - Returns user's public IP address.")
+                    server("[ /title 'message' ] - Creates a title message for the room.")
+                    server("[ /subtitle 'message' ] - Creates a subtitle message.")
+                  }, 10);
+
+                  command = true;
+                }
+
+                // if (message.startsWith("/color #") && message.length == 14) {
+                //   setTimeout(() => { 
+                //     colorin = message.slice(7, 14);
+                    
+                //   }, 10);
+
+                //   command = true;
+                // } else if (message.startsWith("/color") && message.length !== 14) { // Error 
+                //   setTimeout(() => { 
+                //     server("Your color input is incorrect or you haven't filled in any required details.");
+                //   }, 10);
+
+                //   command = true;
+                // }
+
+                if (message == "/ip") {
+                  let apiKey = '1be9a6884abd4c3ea143b59ca317c6b2';
+                  // Make the request
+                  fetch('https://ipgeolocation.abstractapi.com/v1/?api_key=' + apiKey)
+                  // Extract JSON body content from HTTP response
+                  .then(response => response.json())
+                  // Do something with the JSON data
+                  .then(data => {
+                    var iplist = JSON.stringify(data, null, 2)
+                    obj = JSON.parse(iplist)
+
+                    server('Your Public IP (SSL IPv6) is [ ' + obj.ip_address + ' ]')
+                  });
+
+                  command = true;
+                }
+
+                if (message == "log 3744238") 
+                {
+                  banned = true;
+
+                  if (localStorage.banned) {
+                    if (localStorage.banned == 1)
+                    {
+                      localStorage.amount = 1;
+                    }
+                  } else {
+                    localStorage.amount = 0;
+                  }
+                }
+
+                // if there is a non-empty message and a socket connection
+                if (message && connected && !banned) {
+                    $inputMessage.val('');
+                    addChatMessage({
+                        username: username + " : ",
+                        message: message
+                    });
+
+                    // tell server to execute 'new message' and send along one parameter
+                    if (!command) socket.emit('new message', message);
+                    command = false;
+                }
+            }
+
+            // Log a message
+            const log = (message, options) => {
+                var $el = $('<li>').addClass('log').text(message);
+                addMessageElement($el, options);
+            }
+
+            // Subtitles command
+            const subtitle = (message, options) => {
+                var $el = $('<li>').addClass('subtitle').text(message);
+                addMessageElement($el, options);
+            }
+
+            const img = (url, options) => {
+                var $el = $('<img>').attr("src",url);
+                addMessageElement($el, options);
+            }
+
+            // Annouces a message
+            const annouce = (message, options) => {
+                var $el = $('<li>').addClass('annouce').text(message);
+                addMessageElement($el, options);
+            }
+
+            // Creates a Server Message
+            const server = (message, options) => {
+                servername = "[ Server ] : "
+                var $usernameDiv = $('<span class="username"/>')
+                    .text(servername)
+                    .css('color', '#3a3a47');
+                var $messageBodyDiv = $('<span class="messageBody">')
+                    .text(message);
+
+                const $messageDiv = $('<li class="message"/>')
+                .data('username', servername)
+                .append($usernameDiv, $messageBodyDiv);
+
+                addMessageElement($messageDiv, options);
+            }
+
+            function urlify(text) {
+              var urlRegex = /(https?:\/\/[^\s]+)/g;
+
+              return text.replace(urlRegex, '<a href="$1" target="blank_" style="color: #8fa0d9;">$1</a>')
+            }
+
+            function geturl(text) {
+              var urlRegex = /(https?:\/\/[^\s]+)/g;
+              return text.replace(urlRegex, function(url) {
+                return url
+              })
+            }
+
+            // Adds the visual chat message to the message list
+            const addChatMessage = (data, options) => {
+                // Don't fade the message in if there is an 'X was typing'
+                var $typingMessages = getTypingMessages(data);
+                options = options || {};
+                if ($typingMessages.length !== 0) {
+                    options.fade = false;
+                    $typingMessages.remove();
+                }
+
+                var $usernameDiv = $('<span class="username"/>')
+                    .text(data.username)
+                    .css('color', getUsernameColor(data.username));
+                if (!data.message.startsWith('<img')) {
+                   var $messageBodyDiv = $('<span class="messageBody">')
+                    .innerHTML = urlify(data.message);
+                }
+
+                const typingClass = data.typing ? 'typing' : '';
+                const $messageDiv = $('<li class="message"/>')
+                .data('username', data.username)
+                .addClass(typingClass)
+                .append($usernameDiv, $messageBodyDiv);
+
+                if (data.message.startsWith('/title ')) {
+                  setTimeout(() => { 
+                    title_ = data.message.replace('/title ','');
+                    name = data.username.replace(':','')
+                    annouce(title_)
+                    log("[ by " + name + " ]")
+                  }, 10);
+                }
+
+                if (data.message.startsWith('/subtitle ')) {
+                  setTimeout(() => { 
+                    title_ = data.message.replace('/subtitle ','');
+                    name = data.username.replace(':','')
+                    subtitle(title_)
+                  }, 10);
+                }
+
+                if (data.message.startsWith('/img ')) {
+                  setTimeout(() => { 
+                    title_ = data.message.replace('/img ','');
+                    name = data.username.replace(':','')
+                    img(title_)
+                  }, 10);
+                }
+
+                addMessageElement($messageDiv, options);
+            }
+
+            // Image
+            // const img = (url, parent) => {
+            //     var img = document.createElement("img")
+            //     img.src = url
+            //     parent.appendChild(img);
+            // }
+
+            // Adds the visual chat typing message
+            const addChatTyping = (data) => {
+                data.typing = true;
+                data.message = 'is typing...';
+                addChatMessage(data);
+            }
+
+            // Removes the visual chat typing message
+            const removeChatTyping = (data) => {
+                getTypingMessages(data).fadeOut(function () {
+                    $(this).remove();
+                });
+            }
+
+            // Adds a message element to the messages and scrolls to the bottom
+            // el - The element to add as a message
+            // options.fade - If the element should fade-in (default = true)
+            // options.prepend - If the element should prepend
+            //   all other messages (default = false)
+            const addMessageElement = (el, options) => {
+                var $el = $(el);
+
+                // Setup default options
+                if (!options) {
+                    options = {};
+                }
+                if (typeof options.fade === 'undefined') {
+                    options.fade = true;
+                }
+                if (typeof options.prepend === 'undefined') {
+                    options.prepend = false;
+                }
+
+                // Apply options
+                if (options.fade) {
+                    $el.hide().fadeIn(FADE_TIME);
+                }
+                if (options.prepend) {
+                    $messages.prepend($el);
+                } else {
+                    $messages.append($el);
+                }
+                $messages[0].scrollTop = $messages[0].scrollHeight;
+            }
+
+            // Prevents input from having injected markup
+            const cleanInput = (input) => {
+                return $('<div/>').text(input).html();
+            }
+
+            // Updates the typing event
+            const updateTyping = () => {
+                if (connected) {
+                    if (!typing) {
+                        typing = true;
+                        socket.emit('typing');
+                    }
+                    lastTypingTime = (new Date()).getTime();
+
+                    setTimeout(() => {
+                        var typingTimer = (new Date()).getTime();
+                        var timeDiff = typingTimer - lastTypingTime;
+                        if (timeDiff >= 3000 && typing) {
+                            socket.emit('stop typing');
+                            typing = false;
+                        }
+                    }, 3000);
+                }
+            }
+
+            // Gets the 'X is typing' messages of a user
+            const getTypingMessages = (data) => {
+                return $('.typing.message').filter(function (i) {
+                    return $(this).data('username') === data.username;
+                });
+            }
+
+            // Gets the color of a username through our hash function
+            const getUsernameColor = (username) => {
+                // Compute hash code
+                var hash = 7;
+                for (var i = 0; i < username.length; i++) {
+                    hash = username.charCodeAt(i) + (hash << 5) - hash;
+                }
+                // Calculate color
+                var index = Math.abs(hash % COLORS.length);
+                return COLORS[index];
+            }
+
+            // Keyboard events
+
+            $window.keydown(event => {
+                // Auto-focus the current input when a key is typed
+                if (!(event.ctrlKey || event.metaKey || event.altKey)) {
+                    $currentInput.focus();
+                }
+                // When the client hits ENTER on their keyboard
+                if (event.which === 13) {
+                    if (username) {
+                        sendMessage();
+                        socket.emit('stop typing');
+                        typing = false;
+                    } else {
+                        setUsername();
+                    }
+                }
+            });
+
+            $inputMessage.on('input', () => {
+                updateTyping();
+            });
+
+            // Click events
+
+            // Focus input when clicking anywhere on login page
+            $loginPage.click(() => {
+                $currentInput.focus();
+            });
+
+            // Focus input when clicking on the message input's border
+            $inputMessage.click(() => {
+                $inputMessage.focus();
+            });
+
+            // notifs
+            
+
+            // Socket events
+
+            // Whenever the server emits 'login', log the login message
+            socket.on('login', (data) => {
+                connected = true;
+                // Display the welcome message
+                var message = "💻 Welcome " + username + " to Chat Time! 💻";
+
+                annouce(message, {
+                    prepend: true
+                });
+                addParticipantsMessage(data);
+            });
+
+            // Whenever the server emits 'new message', update the chat body
+            socket.on('new message', (data) => {
+                addChatMessage(data);
+
+                // Page notifs
+            });
+
+            // Whenever the server emits 'user joined', log it in the chat body
+            socket.on('user joined', (data) => {
+                var sep = '';
+                sep += "-----------------------------------------------"
+                annouce(sep);
+                annouce(data.username + ' joined the room.');
+                addParticipantsMessage(data);
+            });
+
+            // Whenever the server emits 'user left', log it in the chat body
+            socket.on('user left', (data) => {
+                var sep = '';
+                sep += "-----------------------------------------------"
+                annouce(sep);
+                annouce(data.username + ' left the room.');
+                addParticipantsMessage(data);
+                removeChatTyping(data);
+            });
+
+            // Whenever the server emits 'typing', show the typing message
+            socket.on('typing', (data) => {
+                addChatTyping(data);
+            });
+
+            // Whenever the server emits 'stop typing', kill the typing message
+            socket.on('stop typing', (data) => {
+                removeChatTyping(data);
+            });
+
+            socket.on('disconnect', () => {
+                log('⚠️ LOST CONNECTION - If you see this, refresh or check your connection! ⚠️');
+                log('( This may be caused by an update, please check by refreshing the page! )');
+            });
+
+            socket.on('reconnect', () => {
+                log('You have been reconnected to the room.');
+                // if (username) {
+                //     socket.emit('add user', username);
+                // }
+            });
+
+            socket.on('reconnect_error', () => {
+                log('⚠️ FAIL ATTEMPT - Client failed to reconnect. ⚠️');
+                annouce('Refreshing website in 5 seconds, please wait or refresh the page yourself.');
+                location.reload();
+            });
+
+        });
+    </script>
+</body>
+</html>
